@@ -3,7 +3,7 @@ import Navb from "./navbar/Navb"
 
 const App = () => {
   return (
-    <div className="p-5 bg-gray-300 w-full h-full">
+    <div className="p-5 w-screen h-screen bg-gray-300">
      <Navb/>
       <Mainrapper/>
     </div>

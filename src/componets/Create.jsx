@@ -2,9 +2,12 @@ import { useForm } from "react-hook-form"
 import { nanoid } from "nanoid";
 import { useContext } from "react";
 import { recipecontext } from "../context/RecipeContext";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const Create = () => {
-  const [data, setdata] = useContext(recipecontext)
+  const navigate = useNavigate()
+  const {data, setdata} = useContext(recipecontext)
 
   const { register, handleSubmit, reset } = useForm();
 
@@ -14,8 +17,9 @@ const Create = () => {
     const copydata = [...data]
     copydata.push(recipe)
     setdata(copydata)
-
+    toast.success("Save Recipe")
     reset()
+    navigate("/recipes")
   }
 
   return (
@@ -42,27 +46,27 @@ const Create = () => {
 
         <textarea
           className="block border-b outline-0 p-2"
-          {...register("Start")}
+          {...register("desc")}
           placeholder="Start from here" />
 
         <textarea
           className="block border-b outline-0 p-2"
-          {...register("Ingridient")}
+          {...register("Ingr")}
           placeholder="write Ingridient sperated bu comman" />
 
         <textarea
           className="block border-b outline-0 p-2"
-          {...register("Instraction")}
+          {...register("Inst")}
           placeholder="write Instraction sperated bu comman" />
 
         <select
           className="block border-b outline-0 p-2"
           {...register("categary")}
         >
-          <option value="Hotel manegment">categary 1</option>
-          <option value="Self resturent">categary 2</option>
-          <option value="natural">categary 3</option>
-          <option value="Gym food">categary 4</option>
+          <option value="breakfast">Breakfast</option>
+          <option value="lunch">Lunch</option>
+          <option value="nightdinner">Nightdinner</option>
+          <option value="supper">Supper</option>
         </select>
 
         <button className="block py-1 px-3 bg-gray-400 rounded font-bold mt-4 text-gray-300">Save Recipe</button>
